@@ -1,6 +1,8 @@
-import { VStack, ScrollView, Image, Text, Center, Input } from 'native-base';
+import { VStack, ScrollView, Image, Text, Center } from 'native-base';
 import LogoImg from '@assets/logo.jpg';
 import { useForm, Controller } from 'react-hook-form';
+import { Input } from '@components/Input';
+import { Button } from '@components/Button';
 
 type FormData = {
     email: string;
@@ -11,7 +13,11 @@ export function Signin() {
     const { control, handleSubmit, formState: { errors } } = useForm<FormData>()
 
     return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
+        <ScrollView
+            contentContainerStyle={{ flexGrow: 1 }}
+            showsVerticalScrollIndicator={false}
+            bg='#edecee'
+        >
             <VStack>
                 <Center>
                     <VStack
@@ -49,8 +55,6 @@ export function Signin() {
                                 keyboardType='email-address'
                                 autoCapitalize='none'
                                 onChangeText={onChange}
-                                ml={10}
-                                mr={10}                                
                             />
                         )}
                     />
@@ -59,16 +63,37 @@ export function Signin() {
                         control={control}
                         name='password'
                         render={({ field: { onChange } }) => (
-                            <Input                                
+                            <Input
                                 placeholder='Senha'
                                 secureTextEntry
                                 onChangeText={onChange}
-                                ml={10}
-                                mr={10}   
-                                mt={4}                             
+                                mt={2}
                             />
                         )}
                     />
+
+                    <Button
+                        mt={4}
+                        title="Entrar"
+                        color="#4b64c2"
+                    />
+                </Center>
+            </VStack>
+            <VStack
+                bg='#fff'
+                mt={12}
+                flex={1}
+            >
+                <Center>
+                    <VStack>
+                        <Text mt={12} color='#3e3a40' fontWeight='semibold'>
+                            Ainda não tem acesso?
+                        </Text>
+                        <Button 
+                            title="Criar uma conta"
+                            color="#3e3a40"
+                        />
+                    </VStack>
                 </Center>
             </VStack>
         </ScrollView>
