@@ -10,7 +10,7 @@ type FormData = {
 }
 
 export function Signin() {
-    const { control, handleSubmit, formState: { errors } } = useForm<FormData>()
+    const { control, handleSubmit, formState: { errors } } = useForm<FormData>();
 
     return (
         <ScrollView
@@ -76,6 +76,8 @@ export function Signin() {
                         mt={4}
                         title="Entrar"
                         color="#4b64c2"
+                        textColor='#fff'
+                        pressedColor='#1f42b3'
                     />
                 </Center>
             </VStack>
@@ -84,17 +86,20 @@ export function Signin() {
                 mt={12}
                 flex={1}
             >
-                <Center>
-                    <VStack>
-                        <Text mt={12} color='#3e3a40' fontWeight='semibold'>
+                <VStack>
+                    <Center>
+                        <Text mt={12} color='#3E3A40' fontWeight='semibold'>
                             Ainda não tem acesso?
                         </Text>
-                        <Button 
+                        <Button
+                            mt={5}
                             title="Criar uma conta"
-                            color="#3e3a40"
+                            color="#D9D8DA"
+                            textColor='#3E3A40'
+                            pressedColor='#bebdbe'
                         />
-                    </VStack>
-                </Center>
+                    </Center>
+                </VStack>
             </VStack>
         </ScrollView>
     )
