@@ -1,8 +1,11 @@
-import { VStack, Image, ScrollView, Center, Text, Button as ButtonNativeBase } from "native-base";
+import { useState } from 'react';
+import { VStack, Image, ScrollView, Center, Text, Button as ButtonNativeBase, HStack, IconButton, Icon } from "native-base";
 import LogoImg from '@assets/logo.jpg';
 import SelectImg from '@assets/selectImage.png';
 import { Input } from "@components/Input";
 import { useForm, Controller } from 'react-hook-form';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Button } from '@components/Button';
 
 type FormData = {
     name: string;
@@ -14,6 +17,8 @@ type FormData = {
 
 export function Signup() {
     const { control, handleSubmit, formState: { errors } } = useForm<FormData>();
+    const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(true);
+    const [passwordVisibility, setPasswordVisibility] = useState(true);
 
     return (
         <ScrollView
@@ -90,11 +95,27 @@ export function Signup() {
                             control={control}
                             name='password'
                             render={({ field: { onChange } }) => (
-                                <Input
-                                    placeholder='Senha'
-                                    secureTextEntry
-                                    onChangeText={onChange}
-                                />
+                                <HStack>
+                                    <Input
+                                        placeholder='Senha'
+                                        secureTextEntry={passwordVisibility}
+                                        onChangeText={onChange}
+                                    />
+                                    <IconButton
+                                        position='absolute'
+                                        right={10}
+                                        bottom={3}
+                                        icon={<Icon as={MaterialIcons}
+                                            name={passwordVisibility ? 'visibility' : 'visibility-off'}
+                                            size={7}
+                                            color='#5F5B62' />
+                                        }
+                                        onPress={() => setPasswordVisibility(!passwordVisibility)}
+                                        _pressed={{
+                                            bg: 'none'
+                                        }}
+                                    />
+                                </HStack>
                             )}
                         />
 
@@ -102,16 +123,52 @@ export function Signup() {
                             control={control}
                             name='confirmPassword'
                             render={({ field: { onChange } }) => (
-                                <Input
-                                    placeholder='Confirmar senha'
-                                    secureTextEntry
-                                    onChangeText={onChange}
-                                />
+                                <HStack>
+                                    <Input
+                                        placeholder='Confirmar senha'
+                                        secureTextEntry={confirmPasswordVisibility}
+                                        onChangeText={onChange}
+                                    />
+                                    <IconButton
+                                        position='absolute'
+                                        right={10}
+                                        bottom={3}
+                                        icon={<Icon as={MaterialIcons}
+                                            name={confirmPasswordVisibility ? 'visibility' : 'visibility-off'}
+                                            size={7}
+                                            color='#5F5B62' />
+                                        }
+                                        onPress={() => setConfirmPasswordVisibility(!confirmPasswordVisibility)}
+                                        _pressed={{
+                                            bg: 'none'
+                                        }}
+                                    />
+                                </HStack>
                             )}
                         />
 
+                        <Button
+                            mt={4}
+                            title="Criar"
+                            color="#1A181B"
+                            textColor='#fff'
+                            pressedColor='#252525'
+                        />
 
+                    </Center>
+                </VStack>
+                <VStack mt={12}>
+                    <Center>
+                        <Text color='#3E3A40' fontWeight='semibold'>Já tem uma conta?</Text>
 
+                        <Button
+                            mt={3}
+                            mb={10}
+                            title="Ir para o login"
+                            color="#D9D8DA"
+                            textColor='#3E3A40'
+                            pressedColor='#bebdbe'
+                        />
                     </Center>
                 </VStack>
             </VStack>

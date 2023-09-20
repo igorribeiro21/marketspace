@@ -1,8 +1,10 @@
-import { VStack, ScrollView, Image, Text, Center } from 'native-base';
+import { useState } from 'react';
+import { VStack, ScrollView, Image, Text, Center, Icon, IconButton, HStack } from 'native-base';
 import LogoImg from '@assets/logo.jpg';
 import { useForm, Controller } from 'react-hook-form';
 import { Input } from '@components/Input';
 import { Button } from '@components/Button';
+import { MaterialIcons } from '@expo/vector-icons';
 
 type FormData = {
     email: string;
@@ -11,6 +13,7 @@ type FormData = {
 
 export function Signin() {
     const { control, handleSubmit, formState: { errors } } = useForm<FormData>();
+    const [passwordVisibility, setPasswordVisibility] = useState(true);
 
     return (
         <ScrollView
@@ -63,12 +66,28 @@ export function Signin() {
                         control={control}
                         name='password'
                         render={({ field: { onChange } }) => (
-                            <Input
-                                placeholder='Senha'
-                                secureTextEntry
-                                onChangeText={onChange}
-                                mt={2}
-                            />
+                            <HStack>
+                                <Input
+                                    placeholder='Senha'
+                                    secureTextEntry={passwordVisibility}
+                                    onChangeText={onChange}
+                                    mt={2}
+                                />
+                                <IconButton
+                                        position='absolute'
+                                        right={10}
+                                        bottom={3}
+                                        icon={<Icon as={MaterialIcons}
+                                            name={passwordVisibility ? 'visibility' : 'visibility-off'}
+                                            size={8}
+                                            color='#5F5B62' />
+                                        }
+                                        onPress={() => setPasswordVisibility(!passwordVisibility)}
+                                        _pressed={{
+                                            bg: 'none'
+                                        }}
+                                    />
+                            </HStack>
                         )}
                     />
 
