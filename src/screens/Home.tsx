@@ -1,6 +1,7 @@
-import { VStack, Center, ScrollView, HStack, Text } from 'native-base';
+import { VStack, Center, ScrollView, HStack, Text, Icon } from 'native-base';
 import { UserPhoto } from '@components/UserPhoto';
 import { SmallerButton } from '@components/SmallerButton';
+import { Feather } from '@expo/vector-icons';
 
 export function Home() {
     return (
@@ -34,10 +35,34 @@ export function Home() {
                     </HStack>
 
                     <VStack mt={5}>
-                        <Text color='#5F5B62'>Seus produtos anunciados para venda</Text>
-                        <HStack padding='12 20 12 16' bgColor='#647ac71a'>
-                            <Text>4</Text>
-                            <Text>anúncios ativos</Text>
+                        <Text color='#5F5B62' fontWeight='semibold'>Seus produtos anunciados para venda</Text>
+                        <HStack mt={3} w={320} h={60} alignItems='center' bgColor='#647ac71a'>
+                            <Icon as={Feather}
+                                name='bookmark'
+                                size={6}
+                                color='#364D9D'
+                                ml={2}
+                            />
+                            <VStack ml={3}>
+                                <Text
+                                    fontWeight='bold'
+                                    fontSize='lg'
+                                >4</Text>
+                                <Text
+                                    fontSize='md'
+                                >anúncios ativos</Text>
+                            </VStack>
+                            <Text 
+                            color='#364D9D'
+                             fontWeight='bold'
+                             ml={8}
+                             >Meus anúncios</Text>
+                            <Icon as={Feather}
+                                name='arrow-right'
+                                size={5}
+                                color='#364D9D'
+                                ml={1}
+                            />
                         </HStack>
                     </VStack>
                 </Center>
