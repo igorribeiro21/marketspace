@@ -1,7 +1,9 @@
-import { VStack, Center, ScrollView, HStack, Text, Icon } from 'native-base';
+import { VStack, Center, ScrollView, HStack, Text, Icon, IconButton } from 'native-base';
 import { UserPhoto } from '@components/UserPhoto';
 import { SmallerButton } from '@components/SmallerButton';
 import { Feather } from '@expo/vector-icons';
+import { Input } from '@components/Input';
+import { SalesAd } from '@components/SalesAd';
 
 export function Home() {
     return (
@@ -52,11 +54,11 @@ export function Home() {
                                     fontSize='md'
                                 >anúncios ativos</Text>
                             </VStack>
-                            <Text 
-                            color='#364D9D'
-                             fontWeight='bold'
-                             ml={8}
-                             >Meus anúncios</Text>
+                            <Text
+                                color='#364D9D'
+                                fontWeight='bold'
+                                ml={8}
+                            >Meus anúncios</Text>
                             <Icon as={Feather}
                                 name='arrow-right'
                                 size={5}
@@ -64,6 +66,58 @@ export function Home() {
                                 ml={1}
                             />
                         </HStack>
+                    </VStack>
+
+                    <VStack bg='#F7F7F8' w={320} mt={8}>
+                        <VStack>
+                            <Text color='#5F5B62'>Compre produtos variados</Text>
+
+                            <HStack alignItems='center'>
+                                <Input
+                                    placeholder='Buscar anúncio'
+                                    ml={0}
+                                    mr={0}
+                                    mt={3}
+                                    bgColor='#fff'
+                                />
+                                <IconButton
+                                    ml={230}
+                                    position='absolute'
+                                    icon={
+                                        <Icon as={Feather}
+                                            name='search'
+                                            size={5}
+                                            color='#3E3A40'
+                                        />
+                                    }
+                                />
+
+                                <Text ml={270}
+                                    position='absolute'
+                                    fontSize='2xl'
+                                    color='#9F9BA1'
+                                >|</Text>
+
+                                <IconButton
+                                    ml={280}
+                                    position='absolute'
+                                    icon={
+                                        <Icon as={Feather}
+                                            name='filter'
+                                            size={5}
+                                            color='#3E3A40'
+                                        />
+                                    }
+                                />
+                            </HStack>
+
+                            <ScrollView>
+                                <SalesAd 
+                                />
+                                <SalesAd 
+                                />
+                            </ScrollView>
+                        </VStack>
                     </VStack>
                 </Center>
             </VStack>
